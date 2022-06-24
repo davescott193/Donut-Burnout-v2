@@ -120,8 +120,33 @@ public class MechanicsManager : MonoBehaviour
     // Update is called once per frame
     public AudioSource AmbientSounds;
 
+    void ChangeScenes()
+    {
+        GameManager.instance.MusicPool.PlayMusic(GameManager.instance.RelaxMusic, 1);
+        SceneManager.LoadScene(0);
+        GameManager.CursorChange(true);
+    }
+    bool CompleteBool;
     void Update()
     {
+        if (!CompleteBool)
+        {
+            if (CharacterMotor.instance.currentStress <= 0)
+            {
+                CompleteBool = true;
+
+                GameManager.instance.SoundPool.PlaySound(GameManager.instance.StressedOutSound, 0.3f, true, 0, false, MechanicsManager.instance.PlateSinkTransform);
+                GameManager.instance.MusicPool.StopCurrentMusic();
+                GameManager.AnimationChangeDirection(GameManager.instance.GetComponent<Animation>(), "Stressed Out");
+                AmbientSounds.enabled = false;
+                Invoke("ChangeScenes", 6f);
+            }
+        }
+        else
+        {
+            return;
+        }
+
         AmbientSounds.volume = (float)(CustomerList.Count - 4) / 15;
         if (AmbientSounds.volume >= 1)
             AmbientSounds.volume = 1;
@@ -169,6 +194,7 @@ public class MechanicsManager : MonoBehaviour
                     if (!GrabbedPlatesList[GrabbedPlatesList.Count - 1].PlateTransform.GetComponent<PlateMagnetic>().FinishBool)
                     {
                         GrabbedPlatesList[GrabbedPlatesList.Count - 1].PlateTransform.SetParent(null);
+                        CharacterMotor.instance.HealStress(3);
                         GameManager.instance.SoundPool.PlaySound(GameManager.instance.PlateDropSound, 1f, true, 0, false, CharacterMotor.instance.transform);
                         GrabbedPlatesList[GrabbedPlatesList.Count - 1].PlateTransform.GetComponent<PlateMagnetic>().FinishBool = true;
                     }
@@ -285,7 +311,7 @@ public class MechanicsManager : MonoBehaviour
                             }
                         }
 
-                        CharacterMotor.instance.HealStress(2);
+                        CharacterMotor.instance.HealStress(1);
 
                         CustomerList[i].QueueInt = -1;
                         CustomerList[i].ActivePlateData.PlateTransform = Instantiate(PlatePrefab, CustomerList[i].CustomerTransform).transform;

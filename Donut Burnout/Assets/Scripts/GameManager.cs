@@ -36,11 +36,21 @@ public class GameManager : MonoBehaviour
     public AudioClip PlatePickupSound;
     public AudioClip PlateDropSound;
     public AudioClip CustomerPlacesPlateDownSound;
+    public AudioClip StressedOutSound;
+    [Space(10)]
+    public AudioClip BarkOneSound;
+    public AudioClip BarkTwoSound;
+    public AudioClip BarkThreeSound;
+    [Space(10)]
+    public AudioClip DoorSlamSound;
+    public AudioClip DoorOpenSound;
+    public AudioClip ScreamingSound;
     [Space(10)]
     public AudioClip LoadingSound;
     [Space(10)]
     public AudioClip MenuMusic;
     public AudioClip GameMusic;
+    public AudioClip RelaxMusic;
 
     [Header("Other variables to just leave alone")]
     public AudioPool MusicPool;
@@ -82,6 +92,8 @@ public class GameManager : MonoBehaviour
                 PlayerPrefs.SetInt("Performance", 1);
                 PlayerPrefs.SetInt("Shadows", 1);
             }
+            firstBool = true;
+            ChangeScene(0);
 
 #if UNITY_EDITOR
             string[] searchedAssetsArray = AssetDatabase.FindAssets("", new[] { "Assets/Resources/Food" });
@@ -93,9 +105,6 @@ public class GameManager : MonoBehaviour
             }
 #endif
         }
-
-        firstBool = true;
-        ChangeScene(0);
     }
     bool firstBool;
     public void ChangeScene(int sceneNumber = -1)

@@ -334,7 +334,7 @@ public class AudioPool : MonoBehaviour
     public void StopCurrentMusic()
     {
 
-        DynamicVolumeChange(-1, PoolPosition);
+        DynamicVolumeChange(-0.2f, PoolPosition);
 
     }
 

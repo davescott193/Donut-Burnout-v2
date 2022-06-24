@@ -48,6 +48,7 @@ public class CharacterMotor : MonoBehaviour
         instance = this;
 
     }
+    float doubler = 1;
     private void Start()
     {
 
@@ -101,8 +102,8 @@ public class CharacterMotor : MonoBehaviour
         {
             z += 1.1f;
         }
-        currentStress -= Time.deltaTime;
-
+        currentStress -= doubler * Time.deltaTime;
+        doubler += (0.1f * Time.deltaTime);
         Vector3 inputMove = new Vector3(x, 0.0f, z);
         // Making sure that you go where you're looking, changing global z and x to local z and x
         inputMove = Quaternion.Euler(0.0f, m_look.m_Spin, 0.0f) * inputMove;
