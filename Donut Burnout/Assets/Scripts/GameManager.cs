@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
             {
                 PlayerPrefs.SetInt("First Time", 1);
 
-                PlayerPrefs.SetFloat("Music", .4f);
+                PlayerPrefs.SetFloat("Music", 0.3f);
                 PlayerPrefs.SetFloat("Sound", 1);
                 PlayerPrefs.SetFloat("Camera Speed", 2);
 
