@@ -159,7 +159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 317.3413, y: 10}
+  m_AnchoredPosition: {x: 317.3413, y: 46}
   m_SizeDelta: {x: -715.3174, y: 343.2884}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &175596015
@@ -210,17 +210,15 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: 'A/D
+  m_Text: 'W
 
-    Space
+    A
 
-    Shift/Alt
+    S
 
-    RMB
+    D
 
-    LMB
-
-'
+    Mouse Movement'
 --- !u!222 &175596017
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1284,7 +1282,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: Double Click to combo!
+  m_Text: Press escape to return to main menu
 --- !u!222 &656552040
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2184,7 +2182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2816,7 +2814,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -73, y: 10}
+  m_AnchoredPosition: {x: -73.00003, y: 46}
   m_SizeDelta: {x: -559.8236, y: 343.2884}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1232123576
@@ -2867,8 +2865,15 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: "Left/Right                                 \nJump  \nDodge                    
-    \nParry\nAttack\n"
+  m_Text: 'Forward
+
+    Left
+
+    Right
+
+    Backwards
+
+    Camera'
 --- !u!222 &1232123578
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4790,16 +4795,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonDownSound: {fileID: 0}
-  ButtonUpSound: {fileID: 0}
-  PlayerFootStepSound: {fileID: 0}
+  ButtonUpSound: {fileID: 8300000, guid: a9674485ae459634197dbcfd1f2f7def, type: 3}
+  PlayerFootStepSound: {fileID: 8300000, guid: 7485f4615311724498f7b1862b135807, type: 3}
   PlayerJumpSound: {fileID: 8300000, guid: 77f2033cc0e4f6f4c84072a7d76c8d0e, type: 3}
-  CustomerEntersSound: {fileID: 0}
-  CustomerOrdersSound: {fileID: 0}
+  CustomerEntersSound: {fileID: 8300000, guid: 043c79c0c7dadd64cab7add5a1d0d9ce, type: 3}
+  CustomerOrdersSound: {fileID: 8300000, guid: e2d898bc7c033df48b911ff6fd00fca1, type: 3}
   CustomerReceivesSound: {fileID: 8300000, guid: 8b963396ce7f3ae42b91044e5a65c5c6, type: 3}
-  CustomerEatsSound: {fileID: 0}
-  CustomerPlacesPlateDownSound: {fileID: 0}
-  LoadingSound: {fileID: 0}
-  MenuMusic: {fileID: 0}
+  CustomerEatsSound: {fileID: 8300000, guid: 4efdd1fffd5ed07468234c747966c99a, type: 3}
+  PlateInSinkSound: {fileID: 8300000, guid: 04d5d9c8b67cc7d4dad0399452adb5b5, type: 3}
+  PlatePickupSound: {fileID: 8300000, guid: d34ccdcc90d51614792c6ff27076abd1, type: 3}
+  PlateDropSound: {fileID: 8300000, guid: ca3e9f9dc16c56d4b82672b742ef9315, type: 3}
+  CustomerPlacesPlateDownSound: {fileID: 8300000, guid: 27173f8792ae79d4fbf4fa331e59e3bb, type: 3}
+  LoadingSound: {fileID: 8300000, guid: baae1db6f6f16804ba734330a41408b2, type: 3}
+  MenuMusic: {fileID: 8300000, guid: 66cc0377fc1c5d748b58e22bb7090794, type: 3}
   GameMusic: {fileID: 8300000, guid: 3996fa44cd3af18489bf107855f37638, type: 3}
   MusicPool: {fileID: 1079929483}
   SoundPool: {fileID: 1907617847}

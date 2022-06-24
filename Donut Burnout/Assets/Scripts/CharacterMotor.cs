@@ -1,3 +1,16 @@
+/*********************************************************************
+Bachelor of Software Engineering
+Media Design School
+Auckland
+New Zealand
+(c) 2022 Media Design School
+File Name : CharacterMotor.cs
+Description : player movement and stress
+Author : Allister Hamilton / David Scott 
+Mail : allister.hamilton @mds.ac.nz
+**************************************************************************/
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +18,8 @@ using UnityEngine;
 public class CharacterMotor : MonoBehaviour
 {
     // Headers for the unity editor for visibility
+    public static CharacterMotor instance;
+
     [Header("Attached Components")]
     public CharacterController m_controller;
     public Animator m_animator;
@@ -28,10 +43,13 @@ public class CharacterMotor : MonoBehaviour
     public float maxStress = 100;
     public float currentStress;
 
+    private void Awake()
+    {
+        instance = this;
 
+    }
     private void Start()
     {
-        MechanicsManager.instance.characterMotors.Add(this);
 
 
         if (PlayerPrefs.GetInt("Debug") == 1)
@@ -44,10 +62,9 @@ public class CharacterMotor : MonoBehaviour
 
         //stress Startup
         currentStress = maxStress;
-        stressBar.SetStress(currentStress);
+        stressBar.SetMaxStress(currentStress);
 
         _rb = GetComponent<Rigidbody>();
-
     }
     void Update()
     {
@@ -84,6 +101,7 @@ public class CharacterMotor : MonoBehaviour
         {
             z += 1.1f;
         }
+        currentStress -= Time.deltaTime;
 
         Vector3 inputMove = new Vector3(x, 0.0f, z);
         // Making sure that you go where you're looking, changing global z and x to local z and x
@@ -116,33 +134,17 @@ public class CharacterMotor : MonoBehaviour
         }
 
         //Taking Damage + Damage Overtime
-
-        StartCoroutine(DamageOverTimeCoroutine(0, 0));
-
-        void DamageStress(int damage)
-        {
-            currentStress -= damage;
-        }
-
-        void HealStress(int heal)
-        {
-            currentStress += heal;
-        }
-
-        IEnumerator DamageOverTimeCoroutine(float damageAmount, float duration)
-        {
-            float amountDamage = 0;
-            duration = 3000;
-            damageAmount = 2;
-            float damagePerLoop = damageAmount / duration;
-
-            while (amountDamage < damageAmount)
-            {
-                currentStress -= damagePerLoop;
-                //                Debug.Log("Taking Damage Right Now");
-                amountDamage += damagePerLoop;
-                yield return new WaitForSeconds(1f);
-            }
-        }
     }
+    public void DamageStress(int damage)
+    {
+        currentStress -= damage;
+    }
+
+    public void HealStress(int heal)
+    {
+        currentStress += heal;
+        if (currentStress >= maxStress)
+            currentStress = maxStress;
+    }
+
 }
