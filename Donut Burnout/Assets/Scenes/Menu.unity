@@ -4805,7 +4805,10 @@ MonoBehaviour:
   SoundPool: {fileID: 1907617847}
   SceneAnimation: {fileID: 1741009111}
   FoodList:
-  - {fileID: 1398912345201692198, guid: 2762fd5ad8e6845998294bc13b7d657e, type: 3}
+  - {fileID: 7015310822628181952, guid: e49494bbf3b74224d91037cb35c06c23, type: 3}
+  - {fileID: 518657212054746220, guid: 855e5afaf90b27e4a84d1981d48b9cd8, type: 3}
+  - {fileID: 757654141657309327, guid: 11ba6d25ccd8e8f48b06186cb219e12c, type: 3}
+  - {fileID: 2361240323712416492, guid: 89bff9d0858a8a74799d057decdd3133, type: 3}
 --- !u!4 &1741009110
 Transform:
   m_ObjectHideFlags: 0
