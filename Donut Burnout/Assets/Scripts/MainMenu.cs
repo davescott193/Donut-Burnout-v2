@@ -1,4 +1,16 @@
-﻿using System.Collections;
+﻿/*********************************************************************
+Bachelor of Software Engineering
+Media Design School
+Auckland
+New Zealand
+(c) 2022 Media Design School
+File Name : MainMenu.cs
+Description : Holds menu UI
+Author : Allister Hamilton
+Mail : allister.hamilton @mds.ac.nz
+**************************************************************************/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

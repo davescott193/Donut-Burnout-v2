@@ -1,3 +1,16 @@
+/*********************************************************************
+Bachelor of Software Engineering
+Media Design School
+Auckland
+New Zealand
+(c) 2022 Media Design School
+File Name : Prompt.cs
+Description : UI looks at camera, prepares the donut picture UI and holds variables
+Author : Allister Hamilton
+Mail : allister.hamilton @mds.ac.nz
+**************************************************************************/
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +24,7 @@ public class Prompt : MonoBehaviour
     private void Update()
     {
 
-        transform.LookAt(MechanicsManager.instance.characterMotors[0].m_look.transform);
+        transform.LookAt(CharacterMotor.instance.m_look.transform);
     }
 
     public void CreatePicture()

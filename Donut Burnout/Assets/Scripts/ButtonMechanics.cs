@@ -1,25 +1,23 @@
-﻿using System.Collections;
+﻿/*********************************************************************
+Bachelor of Software Engineering
+Media Design School
+Auckland
+New Zealand
+(c) 2022 Media Design School
+File Name : ButtonMechanics.cs
+Description : registers button events by toggling booleans
+Author : Allister Hamilton
+Mail : allister.hamilton @mds.ac.nz
+**************************************************************************/
+
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
-
-/*
- 
- Bachelor of Software Engineering
- Media Design School
- Auckland
- New Zealand
-
- (c) 2021 Media Design School
-
- File Name    : ButtonMechanics.cs
- Description  : mechanics for what buttons do
- Author       : Allister Hamilton
-
-*/
 
 
 public class ButtonMechanics : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
@@ -141,12 +139,12 @@ public class ButtonMechanics : MonoBehaviour, IPointerClickHandler, IPointerDown
     {
         float Scale = .98f;
         transform.localScale = new Vector3(Scale, Scale, Scale);
-        GameManager.instance.SoundPool.PlaySound(GameManager.instance.ButtonDownSound);
+        GameManager.instance.SoundPool.PlaySound(GameManager.instance.ButtonDownSound, 1, false);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        GameManager.instance.SoundPool.PlaySound(GameManager.instance.ButtonUpSound);
+        GameManager.instance.SoundPool.PlaySound(GameManager.instance.ButtonUpSound, 1, false);
         OnPointerEnter(eventData);
         DoFunction();
     }

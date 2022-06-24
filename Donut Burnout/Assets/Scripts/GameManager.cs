@@ -1,26 +1,21 @@
-﻿using System.Collections;
+﻿/*********************************************************************
+Bachelor of Software Engineering
+Media Design School
+Auckland
+New Zealand
+(c) 2022 Media Design School
+File Name : GameManager.cs
+Description : manages global functions like cross fading between scenes, sound effects and other useful functions
+Author : Allister Hamilton
+Mail : allister.hamilton @mds.ac.nz
+**************************************************************************/
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEditor;
-//using UnityEngine.Rendering.PostProcessing;
-
-
-/*
- 
- Bachelor of Software Engineering
- Media Design School
- Auckland
- New Zealand
-
- (c) 2022 Media Design School
-
- File Name    : GameManager.cs
- Description  : holds vitial functions and loading scenes
- Author       : Allister Hamilton
-
-*/
-
 
 public class GameManager : MonoBehaviour
 {
@@ -37,12 +32,25 @@ public class GameManager : MonoBehaviour
     public AudioClip CustomerOrdersSound;
     public AudioClip CustomerReceivesSound;
     public AudioClip CustomerEatsSound;
+    public AudioClip PlateInSinkSound;
+    public AudioClip PlatePickupSound;
+    public AudioClip PlateDropSound;
     public AudioClip CustomerPlacesPlateDownSound;
+    public AudioClip StressedOutSound;
+    [Space(10)]
+    public AudioClip BarkOneSound;
+    public AudioClip BarkTwoSound;
+    public AudioClip BarkThreeSound;
+    [Space(10)]
+    public AudioClip DoorSlamSound;
+    public AudioClip DoorOpenSound;
+    public AudioClip ScreamingSound;
     [Space(10)]
     public AudioClip LoadingSound;
     [Space(10)]
     public AudioClip MenuMusic;
     public AudioClip GameMusic;
+    public AudioClip RelaxMusic;
 
     [Header("Other variables to just leave alone")]
     public AudioPool MusicPool;
@@ -84,6 +92,8 @@ public class GameManager : MonoBehaviour
                 PlayerPrefs.SetInt("Performance", 1);
                 PlayerPrefs.SetInt("Shadows", 1);
             }
+            firstBool = true;
+            ChangeScene(0);
 
 #if UNITY_EDITOR
             string[] searchedAssetsArray = AssetDatabase.FindAssets("", new[] { "Assets/Resources/Food" });
@@ -95,9 +105,6 @@ public class GameManager : MonoBehaviour
             }
 #endif
         }
-
-        firstBool = true;
-        ChangeScene(0);
     }
     bool firstBool;
     public void ChangeScene(int sceneNumber = -1)
@@ -147,11 +154,10 @@ public class GameManager : MonoBehaviour
     {
         AnimationState animationState = AnimationChangeDirection(GetComponent<Animation>(), "Load", true, firstBool);
 
-        GameManager.instance.MusicPool.DynamicVolumeChange(-1);
-
+        //MusicPool.DynamicVolumeChange(-1);
+        MusicPool.PlayMusic(LoadingSound, 0.2f);
         yield return new WaitUntil(() => !animationState.enabled);
 
-        GameManager.instance.SoundPool.PlaySound(GameManager.instance.LoadingSound);
 
         if (!firstBool)
         {
@@ -168,7 +174,6 @@ public class GameManager : MonoBehaviour
 
         // GameManager.instance.MusicPool.PlayMusic(SceneMusicList[sceneNumber]);
     }
-
 
     public static float ReturnThresholds(float Size, int MaxSize, int MinSize = 0, bool WrapAround = true)
     {
@@ -211,7 +216,6 @@ public class GameManager : MonoBehaviour
         return Size;
     }
 
-
     public static int ReturnBitShift(string[] LayerNames = null, bool Exclude = false)
     {
         if (LayerNames == null)
@@ -233,38 +237,6 @@ public class GameManager : MonoBehaviour
 
         return layerMask;
     }
-
-    public static void ResetChosenHolder(Transform Holder, int StartNumber = 0)
-    {
-        List<Transform> AllChilds = new List<Transform>();
-
-        for (int i = StartNumber; i < Holder.childCount; i++)
-        {
-            AllChilds.Add(Holder.GetChild(i));
-        }
-
-        for (int i = 0; i < AllChilds.Count; i++)
-        {
-            Destroy(AllChilds[i].gameObject);
-            AllChilds[i].gameObject.SetActive(false);
-            AllChilds[i].SetParent(null);
-        }
-    }
-
-    public static void ChangeAnimationLayers(Animation ChosenAnimation)
-    {
-        if (ChosenAnimation)
-        {
-            int Index = 0;
-            foreach (AnimationState clip in ChosenAnimation)
-            {
-                ChosenAnimation[clip.name].layer = Index;
-                ChosenAnimation[clip.name].speed = 1;
-                Index += 1;
-            }
-        }
-    }
-
     public static AnimationState AnimationChangeDirection(Animation ChosenAnimation, string AnimationName = "", bool Forward = true, bool Instant = false)
     {
         if (ChosenAnimation)

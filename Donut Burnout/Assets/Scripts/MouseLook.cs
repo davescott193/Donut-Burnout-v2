@@ -1,3 +1,15 @@
+/*********************************************************************
+Bachelor of Software Engineering
+Media Design School
+Auckland
+New Zealand
+(c) 2022 Media Design School
+File Name : MouseLook.cs
+Description : moves camera around via mouse cursor
+Author : David Scott
+Mail : allister.hamilton @mds.ac.nz
+**************************************************************************/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

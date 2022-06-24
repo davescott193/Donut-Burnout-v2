@@ -2,21 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+/*********************************************************************
+Bachelor of Software Engineering
+Media Design School
+Auckland
+New Zealand
+(c) 2022 Media Design School
+File Name : AudioPool.cs
+Description : manages sound or music by creating a list and placing sounds in scene to give spatial effect or with music to loop seemlessly
+Author : Allister Hamilton
+Mail : allister.hamilton @mds.ac.nz
+**************************************************************************/
 
-/*
- 
- Bachelor of Software Engineering
- Media Design School
- Auckland
- New Zealand
-
- (c) 2022 Media Design School
-
- File Name    : AudioPool.cs
- Description  : Manages Sound and music
- Author       : Allister Hamilton
-
-*/
 
 public class AudioPool : MonoBehaviour
 {
@@ -124,7 +121,6 @@ public class AudioPool : MonoBehaviour
     {
         for (int i = 0; i < Audio_List.Count; i++)
         {
-            Debug.Log(PlayerPrefs.GetFloat(AudioName));
             Audio_List[i].Audio.volume = PlayerPrefs.GetFloat(AudioName) * Audio_List[i].AudioVolume;
 
         }
@@ -291,7 +287,6 @@ public class AudioPool : MonoBehaviour
             Audio_List[PoolPosition].AudioVolume = RequestedVolume;
             Audio_List[PoolPosition].Piority = Piority;
             Audio_List[PoolPosition].SpatialTransform = SpatialTransform;
-            Debug.Log("HELLO" + Audio_List[PoolPosition].Audio.volume);
 
             Audio_List[PoolPosition].Audio.volume = ReturnActualVolume(Audio_List[PoolPosition]);
 
@@ -303,7 +298,7 @@ public class AudioPool : MonoBehaviour
 
     //When Music is called, it turns off all other music and plays this one, until finished then returning down the queue
 
-    public void PlayMusic(AudioClip RequestedMusic, float RequestedTransitionTime = 0, bool isLooped = true)
+    public void PlayMusic(AudioClip RequestedMusic, float volume = 1)
     {
         //transition time is -1 then no songs will be played afterwards for that scene
 
@@ -325,9 +320,9 @@ public class AudioPool : MonoBehaviour
 
 
             PoolPosition = (int)GameManager.ReturnThresholds(PoolPosition - 1, Audio_List.Count - 1);
-            SetupAudioData(Audio_List[PoolPosition], RequestedMusic, isLooped);
-            Audio_List[PoolPosition].TransitionTime = RequestedTransitionTime;
-
+            SetupAudioData(Audio_List[PoolPosition], RequestedMusic, true);
+            Audio_List[PoolPosition].TransitionTime = 0;
+            Audio_List[PoolPosition].AudioVolume = volume;
 
             Audio_List[PoolPosition].Audio.Play();
             DynamicVolumeChange(0.5f, PoolPosition);
@@ -339,7 +334,7 @@ public class AudioPool : MonoBehaviour
     public void StopCurrentMusic()
     {
 
-        DynamicVolumeChange(-1, PoolPosition);
+        DynamicVolumeChange(-0.2f, PoolPosition);
 
     }
 

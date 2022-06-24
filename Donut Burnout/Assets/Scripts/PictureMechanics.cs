@@ -1,3 +1,16 @@
+/*********************************************************************
+Bachelor of Software Engineering
+Media Design School
+Auckland
+New Zealand
+(c) 2022 Media Design School
+File Name : PictureMechanics.cs
+Description : Creates the donut image UI by creating a prefab outside of the scene with a camera and projecting it into a render texture
+Author : Allister Hamilton
+Mail : allister.hamilton @mds.ac.nz
+**************************************************************************/
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,7 +50,7 @@ public class PictureMechanics : MonoBehaviour
             activeRenderTexture.updateMode = CustomRenderTextureUpdateMode.OnDemand;
         }
 
-        CalculateCameraToObject(ActiveCamera, ReturnChildTransform(), cameraShiftFloat);
+        // CalculateCameraToObject(ActiveCamera, ReturnChildTransform(), cameraShiftFloat);
 
         ActiveCamera.targetTexture = activeRenderTexture;
         ActiveCamera.Render();
@@ -52,37 +65,6 @@ public class PictureMechanics : MonoBehaviour
         //  Destroy(ActiveCustomRenderTexture, 1);
         return ActiveCamera.targetTexture;
     }
-
-    public Bounds ReturnModelBounds(Transform requestedTransform)
-    {
-        Bounds activeBounds = new Bounds();
-        activeBounds.center = requestedTransform.transform.position;
-        activeBounds.size = Vector3.zero;
-
-        for (int i = 0; i < requestedTransform.childCount; i++)
-        {
-            if (requestedTransform.GetChild(i).GetComponent<MeshRenderer>())
-            {
-                activeBounds.Encapsulate(requestedTransform.GetChild(i).GetComponent<MeshRenderer>().bounds);
-            }
-        }
-
-        return activeBounds;
-    }
-
-    public void CalculateCameraToObject(Camera RequestedCamera, Transform requestedTransform, float cameraShiftFloat = 1)
-    {
-        Bounds activeBounds = ReturnModelBounds(requestedTransform);
-
-        Vector3 objectSizes = activeBounds.max - activeBounds.min;
-        float objectSize = Mathf.Max(objectSizes.x, objectSizes.y, objectSizes.z);
-        float cameraView = 2.0f * Mathf.Tan(0.5f * Mathf.Deg2Rad * RequestedCamera.fieldOfView); // Visible height 1 meter in front
-        float distance = cameraShiftFloat * objectSize / cameraView; // Combined wanted distance from the object
-        distance += 0.5f * objectSize; // Estimated offset from the center to the outside of the object
-        RequestedCamera.transform.position = activeBounds.center - distance * RequestedCamera.transform.forward;
-        //Debug.Log(RequestedCamera.transform.forward + " | " + activeBounds.center - distance * RequestedCamera.transform.forward);
-    }
-
     private void OnDestroy()
     {
         if (ActiveCustomRenderTexture && GameManager.instance)
