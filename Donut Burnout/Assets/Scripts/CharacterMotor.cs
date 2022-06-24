@@ -139,7 +139,7 @@ public class CharacterMotor : MonoBehaviour
             while (amountDamage < damageAmount)
             {
                 currentStress -= damagePerLoop;
-                Debug.Log("Taking Damage Right Now");
+                //                Debug.Log("Taking Damage Right Now");
                 amountDamage += damagePerLoop;
                 yield return new WaitForSeconds(1f);
             }

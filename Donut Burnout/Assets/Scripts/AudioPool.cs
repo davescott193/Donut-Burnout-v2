@@ -35,7 +35,7 @@ public class AudioPool : MonoBehaviour
     {
         public AudioSource Audio;
         public Transform SpatialTransform;
-        public float AudioVolume;
+        public float AudioVolume = 1;
         public float AudioDirection;
 
         public int Piority;
@@ -124,6 +124,7 @@ public class AudioPool : MonoBehaviour
     {
         for (int i = 0; i < Audio_List.Count; i++)
         {
+            Debug.Log(PlayerPrefs.GetFloat(AudioName));
             Audio_List[i].Audio.volume = PlayerPrefs.GetFloat(AudioName) * Audio_List[i].AudioVolume;
 
         }
@@ -153,7 +154,7 @@ public class AudioPool : MonoBehaviour
     {
         if (AudioName == "Sound")
         {
-            //Debug.Log("PAUSING" + SpecificPosition);
+            Debug.Log("PAUSING" + RequestedDirection);
         }
 
         for (int i = 0; i < Audio_List.Count; i++)
@@ -277,7 +278,7 @@ public class AudioPool : MonoBehaviour
 
             if (SpatialTransform) //default is Vector3.zero
             {
-                Audio_List[PoolPosition].Audio.spatialBlend = 1;
+                Audio_List[PoolPosition].Audio.spatialBlend = 0.5f;
                 Audio_List[PoolPosition].Audio.transform.position = SpatialTransform.position; //stops the high pitch sound
             }
             else
@@ -290,6 +291,8 @@ public class AudioPool : MonoBehaviour
             Audio_List[PoolPosition].AudioVolume = RequestedVolume;
             Audio_List[PoolPosition].Piority = Piority;
             Audio_List[PoolPosition].SpatialTransform = SpatialTransform;
+            Debug.Log("HELLO" + Audio_List[PoolPosition].Audio.volume);
+
             Audio_List[PoolPosition].Audio.volume = ReturnActualVolume(Audio_List[PoolPosition]);
 
             Audio_List[PoolPosition].Audio.Play();
@@ -300,7 +303,7 @@ public class AudioPool : MonoBehaviour
 
     //When Music is called, it turns off all other music and plays this one, until finished then returning down the queue
 
-    public void PlayMusic(AudioClip RequestedMusic, float RequestedTransitionTime = 5, bool isLooped = true)
+    public void PlayMusic(AudioClip RequestedMusic, float RequestedTransitionTime = 0, bool isLooped = true)
     {
         //transition time is -1 then no songs will be played afterwards for that scene
 
