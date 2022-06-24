@@ -21,6 +21,7 @@ public class MechanicsManager : MonoBehaviour
     public List<CustomerData> CustomerList = new List<CustomerData>();
     public float CustomerTimerFloat;
     public float CustomerThresholdFloat;
+    public List<Transform> DirtyPlatesList = new List<Transform>();
 
     [System.Serializable]
     public class CustomerData
@@ -236,6 +237,7 @@ public class MechanicsManager : MonoBehaviour
                     {
                         CustomerList[i].PlateTransform.position += (CustomerList[i].CustomerTransform.forward * 0.5f);
                         CustomerList[i].PlateTransform.SetParent(null, true);
+                        DirtyPlatesList.Add(CustomerList[i].PlateTransform);
                         GameManager.instance.SoundPool.PlaySound(GameManager.instance.CustomerPlacesPlateDownSound, 1, true, 0, false, CustomerList[i].CustomerTransform);
                     }
 
