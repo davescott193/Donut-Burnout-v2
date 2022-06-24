@@ -4800,7 +4800,7 @@ MonoBehaviour:
   CustomerPlacesPlateDownSound: {fileID: 0}
   LoadingSound: {fileID: 0}
   MenuMusic: {fileID: 0}
-  GameMusic: {fileID: 8300000, guid: 3996fa44cd3af18489bf107855f37638, type: 3}
+  GameMusic: {fileID: 0}
   MusicPool: {fileID: 1079929483}
   SoundPool: {fileID: 1907617847}
   SceneAnimation: {fileID: 1741009111}
