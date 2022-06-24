@@ -278,7 +278,7 @@ public class AudioPool : MonoBehaviour
 
             if (SpatialTransform) //default is Vector3.zero
             {
-                Audio_List[PoolPosition].Audio.spatialBlend = 1;
+                Audio_List[PoolPosition].Audio.spatialBlend = 0.5f;
                 Audio_List[PoolPosition].Audio.transform.position = SpatialTransform.position; //stops the high pitch sound
             }
             else
