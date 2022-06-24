@@ -4792,10 +4792,10 @@ MonoBehaviour:
   ButtonDownSound: {fileID: 0}
   ButtonUpSound: {fileID: 0}
   PlayerFootStepSound: {fileID: 0}
-  PlayerJumpSound: {fileID: 0}
+  PlayerJumpSound: {fileID: 8300000, guid: 77f2033cc0e4f6f4c84072a7d76c8d0e, type: 3}
   CustomerEntersSound: {fileID: 0}
   CustomerOrdersSound: {fileID: 0}
-  CustomerReceivesSound: {fileID: 0}
+  CustomerReceivesSound: {fileID: 8300000, guid: 8b963396ce7f3ae42b91044e5a65c5c6, type: 3}
   CustomerEatsSound: {fileID: 0}
   CustomerPlacesPlateDownSound: {fileID: 0}
   LoadingSound: {fileID: 0}
