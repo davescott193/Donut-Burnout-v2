@@ -4791,16 +4791,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonDownSound: {fileID: 0}
   ButtonUpSound: {fileID: 0}
-  PlayerFootStepSound: {fileID: 0}
+  PlayerFootStepSound: {fileID: 8300000, guid: 7485f4615311724498f7b1862b135807, type: 3}
   PlayerJumpSound: {fileID: 8300000, guid: 77f2033cc0e4f6f4c84072a7d76c8d0e, type: 3}
   CustomerEntersSound: {fileID: 0}
-  CustomerOrdersSound: {fileID: 0}
+  CustomerOrdersSound: {fileID: 8300000, guid: e2d898bc7c033df48b911ff6fd00fca1, type: 3}
   CustomerReceivesSound: {fileID: 8300000, guid: 8b963396ce7f3ae42b91044e5a65c5c6, type: 3}
   CustomerEatsSound: {fileID: 0}
   CustomerPlacesPlateDownSound: {fileID: 0}
   LoadingSound: {fileID: 0}
   MenuMusic: {fileID: 0}
-  GameMusic: {fileID: 0}
+  GameMusic: {fileID: 8300000, guid: 3996fa44cd3af18489bf107855f37638, type: 3}
   MusicPool: {fileID: 1079929483}
   SoundPool: {fileID: 1907617847}
   SceneAnimation: {fileID: 1741009111}
