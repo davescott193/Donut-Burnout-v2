@@ -11,7 +11,7 @@ public class CarManager : MonoBehaviour
     public List<CarData> CarDataList = new List<CarData>();
     public float CarTimerFloat;
     public float NewCarThresholdFloat;
-
+    public List<Color> CarColorList = new List<Color>();
     [System.Serializable]
     public class CarData
     {
@@ -26,14 +26,14 @@ public class CarManager : MonoBehaviour
 
         if (CarTimerFloat > NewCarThresholdFloat)
         {
-            NewCarThresholdFloat = Random.Range(3, 10);
+            NewCarThresholdFloat = Random.Range(1, 3);
             CarTimerFloat = 0;
 
             CarData carData = new CarData();
             carData.Directionint = Random.Range(0, 2);
-            carData.CarSpeedFloat = Random.Range(5, 10);
+            carData.CarSpeedFloat = Random.Range(10, 20);
             carData.CarTransform = Instantiate(CarPrefab, CarStartTransform.GetChild(carData.Directionint)).transform;
-
+            carData.CarTransform.GetChild(1).GetComponent<MeshRenderer>().material.color = CarColorList[Random.Range(0, CarColorList.Count)];
             CarDataList.Add(carData);
         }
 

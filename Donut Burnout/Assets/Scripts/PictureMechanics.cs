@@ -37,7 +37,7 @@ public class PictureMechanics : MonoBehaviour
             activeRenderTexture.updateMode = CustomRenderTextureUpdateMode.OnDemand;
         }
 
-        CalculateCameraToObject(ActiveCamera, ReturnChildTransform(), cameraShiftFloat);
+        // CalculateCameraToObject(ActiveCamera, ReturnChildTransform(), cameraShiftFloat);
 
         ActiveCamera.targetTexture = activeRenderTexture;
         ActiveCamera.Render();
