@@ -1,6 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+/*
+ 
+ Bachelor of Software Engineering
+ Media Design School
+ Auckland
+ New Zealand
+
+ (c) 2022 Media Design School
+
+ File Name    : GameManager.cs
+ Description  : holds vitial functions and loading scenes
+ Author       : David Scott
+
+*/
 
 public class CharacterMotor : MonoBehaviour
 {
